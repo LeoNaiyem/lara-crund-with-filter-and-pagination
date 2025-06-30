@@ -50,9 +50,9 @@
     <div class="sidebar d-flex flex-column p-3">
         <h3 class="text-white">My Dashboard</h3>
         <hr class="text-secondary">
-        <a href="{{ route('/') }}">Dashboard</a>
-        <a href="{{ route('doctors') }}">Doctors</a>
-        <a href="{{ route('patients') }}">Patients</a>
+        <a href="{{ url('/') }}">Dashboard</a>
+        <a href="{{ url('doctors') }}">Doctors</a>
+        <a href="{{ url('patients') }}">Patients</a>
         <a href="#">Reports</a>
         <a href="#">Settings</a>
         <a href="#" class="mt-auto text-danger">Logout</a>
