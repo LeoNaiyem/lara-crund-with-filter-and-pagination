@@ -5,9 +5,9 @@
     <div class="card bg-primary mb-3 p-4">
         <div class="row">
             <div class="col-12 d-flex justify-content-between align-item-center ">
-                <h3 class=" card-title text-white d-flex align-items-center  m-0">Doctor List</h3>
-                <a href="{{ route('doctors.create') }}" class="btn btn-light btn-sm" title="Create New Product">
-                    <i class="fa fa-plus mr-1"></i> Create New Doctor
+                <h3 class=" card-title text-white d-flex align-items-center  m-0">Designation List</h3>
+                <a href="{{ route('designations.create') }}" class="btn btn-light btn-sm" title="Create New Product">
+                    <i class="fa fa-plus mr-1"></i> Create New Designation
                 </a>
             </div>
         </div>
@@ -60,13 +60,13 @@
         <!-- Table -->
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
-                <thead class="thead-dark"><tr><th>Id</th><th>Name</th><th>Department id</th><th>Designation id</th><th>Phone</th><th>Photo</th><th>Actions</th></tr></thead>
+                <thead class="thead-dark"><tr><th>Id</th><th>Name</th><th>Created at</th><th>Updated at</th><th>Actions</th></tr></thead>
                 <tbody>
-                @foreach ($doctors as $item)
-                    <tr><td>{{ $item->id }}</td><td>{{ $item->name }}</td><td>{{ optional($item->department)->name ?? $item->department_id }}</td><td>{{ optional($item->designation)->name ?? $item->designation_id }}</td><td>{{ $item->phone }}</td><td>@if($item->photo)<img src="{{ asset('storage/' . $item->photo) }}" width="50">@endif</td><td>
-    <a href="{{ route('doctors.show', $item->id) }}" class="btn btn-sm btn-info">View</a>
-    <a href="{{ route('doctors.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-    <form action="{{ route('doctors.destroy', $item->id) }}" method="POST" style="display:inline;">
+                @foreach ($designations as $item)
+                    <tr><td>{{ $item->id }}</td><td>{{ $item->name }}</td><td>{{ $item->created_at }}</td><td>{{ $item->updated_at }}</td><td>
+    <a href="{{ route('designations.show', $item->id) }}" class="btn btn-sm btn-info">View</a>
+    <a href="{{ route('designations.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+    <form action="{{ route('designations.destroy', $item->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
         <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>

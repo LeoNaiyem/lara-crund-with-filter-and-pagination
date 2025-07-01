@@ -1,3 +1,17 @@
-<div>
-    <!-- Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead -->
-</div>
+@extends('layouts.main')
+@section('content')
+    <!-- Page Header -->
+    <div class="card bg-primary mb-3 p-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-item-center ">
+                <h3 class=" card-title text-white d-flex align-items-center  m-0">Edit Doctor</h3>
+                <a href="{{ route('doctors.index') }}" class="btn btn-light btn-sm" title="Back">
+                    <i class="fa fa-arrow-left mr-1"></i> Back
+                </a>
+            </div>
+        </div>
+    </div> 
+    <form action="{{ route('doctors.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
+        @include('pages.doctors._form', ['mode' => 'edit', 'doctor' => $doctor])
+    </form>
+@endsection
