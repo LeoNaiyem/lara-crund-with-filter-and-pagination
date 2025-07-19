@@ -18,8 +18,8 @@ class DoctorController extends Controller
 
     public function create()
     {
-        $departments = \App\Models\Department::all();
-        $designations = \App\Models\Designation::all();
+        $departments = Department::all();
+        $designations = Designation::all();
 
         return view('pages.doctors.create', [
             'mode' => 'create',
@@ -47,8 +47,8 @@ class DoctorController extends Controller
 
     public function edit(Doctor $doctor)
     {
-        $departments = \App\Models\Department::all();
-        $designations = \App\Models\Designation::all();
+        $departments = Department::all();
+        $designations = Designation::all();
 
         return view('pages.doctors.edit', [
             'mode' => 'edit',
