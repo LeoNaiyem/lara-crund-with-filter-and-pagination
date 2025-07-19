@@ -14,46 +14,48 @@
             </div>
         </div>
         <!-- Filter Section -->
-        <div class="card mb-3 p-4">
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                        <!-- Search Input with Icon -->
-                        <div class="col-md-5">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
+        <form action="{{ route('doctors.index') }}" method="GET">
+            <div class="card mb-3 p-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <!-- Search Input -->
+                            <div class="col-md-5">
+                                <div class="input-group">
                                     <span class="input-group-text px-2 bg-primary h-100 text-white">
                                         <i class="fa fa-search"></i>
                                     </span>
+                                    <input type="text" class="form-control" name="search" value="{{ request('search') }}"
+                                        placeholder="Search doctor by name">
                                 </div>
-                                <input type="text" class="form-control" id="search" placeholder="Search product by name">
                             </div>
-                        </div>
 
-                        <!-- Filter by Category -->
-                        <div class="col-md-3">
-                            <select class="form-select" id="filterCategory">
-                                <option value="">Filter by Category</option>
-                                <option value="">option-1</option>
-                                <option value="">option-2</option>
-                                <option value="">option-3</option>
-                                <option value="">option-4</option>
-                            </select>
-                        </div>
+                            <!-- Filter by Department (optional) -->
+                            <div class="col-md-3">
+                                <select class="form-select" name="department_id">
+                                    <option value="">Filter by Department</option>
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}" {{ request('department_id') == $department->id ? 'selected' : '' }}>
+                                            {{ $department->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                        <!-- Apply Filters Button -->
-                        <div class="col-md-2">
-                            <button class="btn btn-primary btn-block">Apply Filters</button>
-                        </div>
-
-                        <!-- Reset Filters Button -->
-                        <div class="col-md-2">
-                            <button class="btn btn-outline-danger btn-block">Reset Filters</button>
+                            <!-- Apply & Reset Buttons -->
+                            <div class="col-md-2">
+                                <button class="btn btn-primary btn-block w-100">Apply Filters</button>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ route('doctors.index') }}" class="btn btn-outline-danger btn-block w-100">Reset
+                                    Filters</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
         <!-- end filter section -->
 
         <!-- Table section -->

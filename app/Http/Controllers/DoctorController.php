@@ -10,12 +10,30 @@ use App\Models\Designation;
 
 class DoctorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // $doctors = Doctor::orderBy('id', 'desc')->paginate(10)->onEachSide(1);
-        $doctors = Doctor::with('department', 'designation')->paginate(10)->onEachSide(1);
+        $query = Doctor::with('department', 'designation');
 
-        return view('pages.doctors.index', compact('doctors'));
+        // Apply search filter
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Apply department filter
+        if ($request->filled('department_id')) {
+            $query->where('department_id', $request->department_id);
+        }
+
+        // Get paginated result with filters
+        $doctors = $query->orderBy('id', 'desc')->paginate(10)->onEachSide(1);
+
+        // Keep query parameters in pagination links
+        $doctors->appends($request->all());
+
+        // Get departments for dropdown
+        $departments = Department::all();
+
+        return view('pages.doctors.index', compact('doctors', 'departments'));
     }
 
     public function create()
