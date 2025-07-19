@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="container">
+        {{-- {{ dd($doctors) }} --}}
         <!-- Page Header -->
         <div class="card bg-primary mb-3 p-4">
             <div class="row">
@@ -116,6 +117,9 @@
             </nav> --}}
 
             {{ $doctors->links('vendor.pagination.custom-pagination') }}
+
+            {{-- bootstrap build in pagination --}}
+            {{-- {{ $doctors->links() }} --}}
 
         </div>
         <!-- End table section -->
